@@ -47,9 +47,6 @@ Copie o `.env.example` para `.env`:
 cp .env.example .env
 ```
 
-O `.env` já vem pronto para funcionar com as credenciais padrão do
-`docker-compose.yml` — não precisa alterar nada para rodar localmente.
-
 ### 3. Suba o banco de dados
 
 ```bash
