@@ -36,7 +36,6 @@ Node.js + TypeScript + Prisma + Docker.
 
 ```bash
 git clone https://github.com/SEU_USUARIO/estoque-backend.git
-cd estoque-backend
 ```
 
 ### 2. Configure as variáveis de ambiente
