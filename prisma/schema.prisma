@@ -10,3 +10,64 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
+
+enum TipoMovimentacao {
+  ENTRADA
+  SAIDA
+}
+
+model Categoria {
+  id        String    @id @default(uuid())
+  nome      String    @unique
+  descricao String?
+  produtos  Produto[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@map("categorias")
+}
+
+model Fornecedor {
+  id        String    @id @default(uuid())
+  nome      String
+  cnpj      String?   @unique
+  email     String?
+  telefone  String?
+  produtos  Produto[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@map("fornecedores")
+}
+
+model Produto {
+  id            String         @id @default(uuid())
+  nome          String
+  descricao     String?
+  sku           String         @unique
+  precoCusto    Decimal        @db.Decimal(10, 2)
+  precoVenda    Decimal        @db.Decimal(10, 2)
+  quantidade    Int            @default(0)
+  quantidadeMin Int            @default(0)
+  categoriaId   String?
+  categoria     Categoria?     @relation(fields: [categoriaId], references: [id])
+  fornecedorId  String?
+  fornecedor    Fornecedor?    @relation(fields: [fornecedorId], references: [id])
+  movimentacoes Movimentacao[]
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+
+  @@map("produtos")
+}
+
+model Movimentacao {
+  id         String           @id @default(uuid())
+  tipo       TipoMovimentacao
+  quantidade Int
+  motivo     String?
+  produtoId  String
+  produto    Produto          @relation(fields: [produtoId], references: [id])
+  createdAt  DateTime         @default(now())
+
+  @@map("movimentacoes")
+}
