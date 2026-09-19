@@ -6,3 +6,5 @@ dist
 .agents
 .claude
 .windsurf
+/src/generated
+.devcontainer
