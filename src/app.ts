@@ -3,6 +3,7 @@ import { categoriaRoutes } from "./routes/categoria.routes";
 import { fornecedorRoutes } from "./routes/fornecedor.routes";
 import { produtoRoutes } from "./routes/produto.routes";
 import { movimentacaoRoutes } from "./routes/movimentacao.routes";
+import { errorHandler, notFoundHandler } from "./middlewares/errorHandler";
 
 export const app = express();
 
@@ -16,3 +17,6 @@ app.use("/api/categorias", categoriaRoutes);
 app.use("/api/fornecedores", fornecedorRoutes);
 app.use("/api/produtos", produtoRoutes);
 app.use("/api/movimentacoes", movimentacaoRoutes);
+
+app.use(notFoundHandler);
+app.use(errorHandler);
