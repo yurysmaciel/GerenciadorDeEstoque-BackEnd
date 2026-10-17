@@ -1,7 +1,8 @@
-import express from "express"
+import express from "express";
 import { categoriaRoutes } from "./routes/categoria.routes";
 import { fornecedorRoutes } from "./routes/fornecedor.routes";
 import { produtoRoutes } from "./routes/produto.routes";
+import { movimentacaoRoutes } from "./routes/movimentacao.routes";
 
 export const app = express();
 
@@ -14,3 +15,4 @@ app.get("/api/health", (_req, res) => {
 app.use("/api/categorias", categoriaRoutes);
 app.use("/api/fornecedores", fornecedorRoutes);
 app.use("/api/produtos", produtoRoutes);
+app.use("/api/movimentacoes", movimentacaoRoutes);
