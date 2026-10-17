@@ -1,0 +1,7 @@
+services:
+  api:
+    network_mode: host
+    ports: !reset []
+    environment:
+      DATABASE_URL: "postgresql://estoque_user:estoque_pass@localhost:5432/estoque_db?schema=public"
+      
